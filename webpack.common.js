@@ -132,8 +132,8 @@ const plugins = {
       mode: 'webapp',
       devMode: 'webapp',
       favicons: {
-        appName: 'PharmaEngine',
-        appShortName: 'PE',
+        appName: 'MyTemplate',
+        appShortName: '',
         appDescription: null,
         developerName: null,
         developerURL: null,
