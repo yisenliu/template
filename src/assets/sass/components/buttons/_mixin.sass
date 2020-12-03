@@ -1,0 +1,46 @@
+// *************************************
+//
+//   Mixins
+//   -> Buttons
+//
+// *************************************
+
+// Easily pump out default styles, as well as :hover, :focus, :active,
+// and disabled options for all buttons
+=button-variant($buttonMap)
+  $color: map-get($buttonMap, color)
+  $background-color: map-get($buttonMap, bgColor)
+  $border-color: map-get($buttonMap, brColor)
+  
+  color: $color
+  background-color: $background-color
+  @if ($border-color != null)
+    border: solid 1px $border-color
+  &:hover
+    color: lighten($color, 8%)
+    background-color: lighten($background-color, 8%)
+    @if ($border-color != null)
+      border-color: lighten($border-color, 8%)
+  &:active
+    color: $color
+    background-color: darken($background-color, 5%)
+    @if ($border-color != null)
+      border-color: darken($border-color, 8%)
+  &:disabled,
+  &[disabled]
+    &,
+    &:hover,
+    &:active
+      background-color: $background-color
+      @if ($border-color != null)
+        border-color: $border-color
+
+=button-append-icon($iconName)
+  &::after
+    +iconFont($iconName)
+    margin-left: 10px
+
+=button-prepend-icon($iconName)
+  &::before
+    +iconFont($iconName)
+    margin-right: 10px

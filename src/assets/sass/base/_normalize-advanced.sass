@@ -1,0 +1,121 @@
+// Forms
+// -------------------------------------
+// Add the correct vertical alignment in Chrome, Firefox, and Opera.
+progress
+  vertical-align: baseline  
+
+  
+// Media
+// -------------------------------------
+// Correct `inline-block` display not defined in IE 9 and Firefox 3.
+audio,
+canvas,
+progress,
+video 
+  display: inline-block
+
+// Add the correct vertical alignment in Chrome, Firefox, and Opera.  
+progress
+  vertical-align: baseline
+
+// Prevent modern browsers from displaying `audio` without controls.
+// Remove excess height in iOS 5 devices.
+audio:not([controls]) 
+  display: none
+  height: 0
+
+
+// Interactive
+// -------------------------------------
+// Add the correct display in Edge, IE 10+, and Firefox.
+details
+  display: block
+
+// Add the correct display in all browsers.
+summary
+  display: list-item
+  cursor: pointer
+  outline: none
+
+
+// Lists
+// -------------------------------------
+dl,
+menu 
+  margin: 0 0 px2rem(24) 0
+dt
+  font-weight: bold
+
+dd  
+  margin: 0 0 0 px2rem(40)
+
+
+// Text-level semantics
+// -------------------------------------
+// 1. Remove the bottom border in Chrome 57-
+// 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+abbr[title]  
+  border-bottom: none; // 1 
+  text-decoration: underline; // 2 
+  text-decoration: underline dotted; // 2   
+
+// 1. Correct the inheritance and scaling of font size in all browsers.
+// 2. Correct the odd `em` font sizing in all browsers.
+code,
+kbd,
+samp
+  font-family: get($font-family,monospace) // 1 
+  font-size: 1em // 2
+
+blockquote
+  font-size: px2rem(18)
+  border-left: 3px solid get($border,color,normal)
+  padding: get($spacer,m)
+  margin: 0 0 get($spacer,m) 0
+
+cite
+  font-style: normal
+
+// Address styling not present in Safari 5 and Chrome.
+dfn  
+  font-style: italic
+
+// Address styling not present in IE 6/7/8/9.
+mark
+  background-color: $yellow-100
+  color: #000 
+  padding: px2rem(2)
+  border-radius: get($border,radius,m)
+
+// User input typically entered via keyboard
+kbd
+  padding: px2rem(2) px2rem(4)
+  font-size: 90%
+  color: #fff
+  background-color: $gray-700
+  border-radius: get($border,radius,s)
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.25)
+
+code,
+kbd,
+pre,
+samp  
+  font-family: get($font-family,monospace)
+  font-size: px2rem(16)
+
+// 1. Improve readability of pre-formatted text in all browsers.
+// 2. Contain overflow in all browsers.
+pre  
+  white-space: pre // 1
+  white-space: pre-wrap // 1
+  word-wrap: break-word // 1
+  overflow: auto // 2
+  display: block
+  padding: get($spacer,s)
+  margin: 0 0 1em 0
+  word-break: break-all
+  word-wrap: break-word
+  color: $gray-700
+  background-color: $gray-200
+  border: 1px solid $gray-500
+  border-radius: get($border,radius,m)

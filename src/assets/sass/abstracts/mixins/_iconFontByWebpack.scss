@@ -1,0 +1,164 @@
+$__iconfont__data: map-merge(if(global_variable_exists('__iconfont__data'), $__iconfont__data, ()), (
+	"myFont": (
+		"arrow-bold-down": "\ea01",
+		"arrowDown": "\ea02",
+		"arrowDown2": "\ea03",
+		"arrowLeft": "\ea04",
+		"arrowRight": "\ea05",
+		"arrowUp": "\ea06",
+		"basic1-002_write_pencil_new_edit": "\ea07",
+		"basic1-003_newspaper_news": "\ea08",
+		"basic1-005_email_delivery_send": "\ea09",
+		"basic1-013_time_clock": "\ea0a",
+		"basic1-017_location": "\ea0b",
+		"basic1-021_chat_comment_bubble": "\ea0c",
+		"basic1-036_phone_call": "\ea0d",
+		"basic1-043_file_document_text": "\ea0e",
+		"basic1-114_user_man": "\ea0f",
+		"basic1-116_user_group": "\ea10",
+		"basic1-121_alert_attention": "\ea11",
+		"basic1-137_bookmark": "\ea12",
+		"basic1-138_quotes": "\ea13",
+		"basic1-147_target": "\ea14",
+		"basic1-173_close_remove_exit": "\ea15",
+		"basic1-174_ok_success_check": "\ea16",
+		"basic1-182_graph_bars_chart_rise": "\ea17",
+		"basic2-055_world_international": "\ea18",
+		"basic2-060_firewall": "\ea19",
+		"basic2-087_info": "\ea1a",
+		"basic2-091_map": "\ea1b",
+		"basic2-092_map_directory": "\ea1c",
+		"basic2-117_open_reading_book": "\ea1d",
+		"basic2-201_ship_anchor_navy": "\ea1e",
+		"basic2-224_mic_recording_audio": "\ea1f",
+		"basic2-233_help": "\ea20",
+		"basic2-234_graph_up_chart": "\ea21",
+		"basic2-236_graph_pie_chart": "\ea22",
+		"basic2-237_line_chart_analytics": "\ea23",
+		"basic2-253_user_profile": "\ea24",
+		"basic2-263_download": "\ea25",
+		"basic2-269_shield_security_virus": "\ea26",
+		"basic2-270_shield_security": "\ea27",
+		"basic2-284_maximize_window_external_link": "\ea28",
+		"basic3-019_presentation_keynote": "\ea29",
+		"basic3-064_database": "\ea2a",
+		"basic3-082_winner_medal_first_award_achievement": "\ea2b",
+		"basic3-156_dna_structure_genome": "\ea2c",
+		"basic3-157_lego_brick": "\ea2d",
+		"check": "\ea2e",
+		"circle": "\ea2f",
+		"f073": "\ea30",
+		"forward": "\ea31",
+		"glyphicons-basic-137-cogwheel": "\ea32",
+		"glyphicons-basic-157-thumbnails": "\ea33",
+		"glyphicons-basic-28-search": "\ea34",
+		"glyphicons-basic-498-more-vertical": "\ea35",
+		"glyphicons-basic-554-handshake": "\ea36",
+		"glyphicons-basic-595-nearby-alt": "\ea37",
+		"glyphicons-basic-63-paperclip": "\ea38",
+		"IcoMoon-067-phone": "\ea39",
+		"IcoMoon-172-magnet": "\ea3a",
+		"IcoMoon-180-target": "\ea3b",
+		"IcoMoon-186-list-numbered": "\ea3c",
+		"IcoMoon-187-list": "\ea3d",
+		"IcoMoon-189-tree": "\ea3e",
+		"IconMoon-119-user-tie": "\ea3f",
+		"minus": "\ea40",
+		"pdf": "\ea41",
+		"plus": "\ea42"
+	)
+));
+
+
+$create-font-face: true !default; // should the @font-face tag get created?
+
+// should there be a custom class for each icon? will be .filename
+$create-icon-classes: true !default; 
+
+// what is the common class name that icons share? in this case icons need to have .icon.filename in their classes
+// this requires you to have 2 classes on each icon html element, but reduced redeclaration of the font family
+// for each icon
+$icon-common-class: 'icon' !default;
+
+// if you whish to prefix your filenames, here you can do so.
+// if this string stays empty, your classes will use the filename, for example
+// an icon called star.svg will result in a class called .star
+// if you use the prefix to be 'icon-' it would result in .icon-star
+$icon-prefix: '' !default; 
+
+// helper function to get the correct font group
+@function iconfont-group($group: null) {
+  @if (null == $group) {
+    $group: nth(map-keys($__iconfont__data), 1);
+  }
+  @if (false == map-has-key($__iconfont__data, $group)) {
+    @warn 'Undefined Iconfont Family!';
+    @return ();
+  }
+  @return map-get($__iconfont__data, $group);
+}
+
+// helper function to get the correct icon of a group
+@function iconfont-item($name) {
+  $slash: str-index($name, '/');
+  $group: null;
+  @if ($slash) {
+    $group: str-slice($name, 0, $slash - 1);
+    $name: str-slice($name, $slash + 1);
+  } @else {
+    $group: nth(map-keys($__iconfont__data), 1);
+  }
+  $group: iconfont-group($group);
+  @if (false == map-has-key($group, $name)) {
+    @warn 'Undefined Iconfont Glyph!';
+    @return '';
+  }
+  @return map-get($group, $name);
+}
+
+// complete mixing to include the icon
+// usage:
+// .my_icon{ @include iconfont('star') }
+@mixin iconfont($icon) {
+  $slash: str-index($icon, '/');
+  $group: null;
+  @if ($slash) {
+    $group: str-slice($icon, 0, $slash - 1);
+  } @else {
+    $group: nth(map-keys($__iconfont__data), 1);
+  }
+  &:before {
+    font-family: $group;
+    font-style: normal;
+    font-weight: 400;
+    content: iconfont-item($icon);
+  }
+}
+
+// creates the font face tag if the variable is set to true (default)
+@if $create-font-face == true {
+  @font-face {
+   font-family: "myFont";
+   src: url('../../../../../public/fonts/myFont.eot'); /* IE9 Compat Modes */
+   src: url('../../../../../public/fonts/myFont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+      url('../../../../../public/fonts/myFont.woff') format('woff'), /* Pretty Modern Browsers */
+      url('../../../../../public/fonts/myFont.ttf')  format('truetype'), /* Safari, Android, iOS */
+      url('../../../../../public/fonts/myFont.svg') format('svg'); /* Legacy iOS */
+    font-display: swap;
+  }
+}
+
+// creates icon classes for each individual loaded svg (default)
+@if $create-icon-classes == true {
+  .#{$icon-common-class} {
+    font-style: normal;
+    font-weight: 400;
+
+    @each $icon, $content in map-get($__iconfont__data, "myFont") {
+      &.#{$icon-prefix}#{$icon}:before {
+        font-family: "myFont";
+        content: iconfont-item("myFont/#{$icon}");
+      }
+    }
+  }
+}

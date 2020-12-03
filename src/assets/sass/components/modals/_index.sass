@@ -1,0 +1,80 @@
+// *************************************
+//
+// Components
+// -> Modal
+//
+// *************************************
+
+// Scaffolding
+// -------------------------------------
+.modal
+  +size(100%)
+  display: none
+  position: fixed
+  z-index: get($layer,modal)
+  left: 0
+  top: 0
+  overflow: hidden
+  &::before
+    +size(200%)
+    content: ''
+    background-color: rgba(#000,.7)
+    display: block
+    margin: auto
+    position: fixed
+    z-index: -1
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
+    opacity: 0
+    transition: opacity get($time,slow) get($time,fast)
+    overflow: hidden
+  &.active
+    &::before
+      opacity: 1
+    .modal__dialog
+      opacity: 1
+      transform: translateY(50px)
+  &__dialog
+    padding: 36px
+    background-color: #fff
+    width: 100%
+    max-height: calc(100vh - 100px)
+    opacity: 0
+    transition: all get($time,fast)
+    overflow: hidden
+    position: relative
+    margin: auto
+    +mobile
+      padding: 24px gutter()
+      max-width: 80vw
+    +mobile(landscape)
+      max-width: 100vh
+    +tablet
+      max-width: if(unitless(gutter()), #{100% - 2 * gutter()},calc(100% - #{2 * gutter()}))
+    +tablet(landscape)
+      max-width: 95vh
+    +desktop
+      max-width: 93vh
+  &__body
+    +size(100%)
+    overflow: hidden
+  &__footer
+    padding-top: 24px
+    overflow: hidden
+  &__close
+    +hide-text
+    +size(48px)
+    background: sprite(circleCloseGray) center center / 25px auto no-repeat
+    display: block
+    position: absolute
+    z-index: 30
+    top: 0
+    right: 0
+    cursor: pointer
+
+.modal--open
+  overflow: hidden
+
+

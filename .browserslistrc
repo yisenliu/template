@@ -1,0 +1,7 @@
+# Browsers that we support
+
+EDGE >= 17
+Chrome >= 77
+Firefox >= 69
+iOS >= 12.4
+Android >= 6

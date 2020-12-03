@@ -1,0 +1,486 @@
+@import url('https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400;0,700;1,400;1,700&family=Lato&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Poppins:wght@300;400;500;600;700&display=swap')
+
+
+// Unicode range
+// -------------------------------------
+// @if ($use-unicode-range)
+//   // 中日韓-漢字 CJK Unified Ideographs U+4E00-U+9FFF
+//   @font-face
+//     font-family: my-sans-serif
+//     src: local(-apple-system), local(BlinkMacSystemFont), local('Microsoft YaHei UI'), local('Microsoft YaHei'), local('Microsoft JhengHei')
+//     unicode-range: U+4E00-9FFF
+//     font-display: swap // Avoid invisible text during font loading
+
+//   @font-face
+//     font-family: my-serif
+//     src: local(-apple-system), local(BlinkMacSystemFont),local(PMingLiU), local('LiSong Pro'), local('Kozuka Mincho Pro'), local('MS Mincho')
+//     unicode-range: U+4E00-9FFF
+//     font-display: swap
+
+//   // 日文 Japanese Kana U+3040-U+30FF
+//   @font-face
+//     font-family: my-sans-serif
+//     src: local(Meiryo), local('游ゴシック Medium'), local('Kozuka Gothic Pro'), local('Hiragino Kaku Gothic Pro')
+//     unicode-range: U+3040-30FF
+//     font-display: swap
+
+//   @font-face
+//     font-family: my-serif
+//     src: local('Kozuka Mincho Pro'), local('Hiragino Mincho Pro'), local('MS Mincho')
+//     unicode-range: U+3040-30FF
+//     font-display: swap
+
+//   // 注音符號 Bopomofo U+3105-U+312C
+//   @font-face
+//     font-family: my-sans-serif
+//     src: local('Microsoft YaHei UI'), local('Microsoft YaHei'), local('Microsoft JhengHei UI'), local('Microsoft JhengHei'), local('LiHei Pro')
+//     unicode-range: U+3105-312C
+//     font-display: swap
+
+//   @font-face
+//     font-family: my-serif
+//     src: local(-apple-system), local(BlinkMacSystemFont),local(PMingLiU), local('LiSong Pro')
+//     unicode-range: U+3105-312C
+//     font-display: swap
+
+//   // 拉丁文 Latin, Latin1, Latin Ext-A, Latin Ext-B
+//   @font-face
+//     font-family: my-sans-serif
+//     src: local(-apple-system), local(BlinkMacSystemFont), local('Segoe UI'), local(Roboto), local(Ubuntu), local('Helvetica Neue'), local(Helvetica), local(Arial)
+//     unicode-range: U+00-024F
+//     font-display: swap
+
+//   @font-face
+//     font-family: my-serif
+//     src: local(-apple-system), local(BlinkMacSystemFont),local(Georgia), local('Times New Roman'), local(Times)
+//     unicode-range: U+00-024F
+//     font-display: swap
+
+
+
+// Reset the box-sizing
+// -------------------------------------
+*,
+::before,
+::after
+  box-sizing: border-box
+
+
+// Base
+// -------------------------------------
+html
+  // font: 16px / #{get($line-height,m)} get($font-family,sans-serif)
+  font: 16px / #{get($line-height,m)} get($font-family,custom-family)
+  // Prevent iOS text size adjust after orientation change, without disabling user zoom.
+  -webkit-text-size-adjust: 100%
+  -webkit-font-smoothing: antialiased
+  // `css variable` is not supported by IE11, replaced it with 'counter-reset'.
+  +mobile
+    --device: 'mobile'
+    counter-reset: mobile
+  +tablet
+    --device: 'tablet'
+    counter-reset: tablet
+  +desktop
+    --device: 'desktop'
+    counter-reset: desktop
+
+body
+  margin: 0 
+  text-rendering: optimizeLegibility
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+  color: #556270
+  background-color: #fff
+  // will-change: transform // 捲動時不重繪
+  // Compatible with IE11 Partial support unicode-range
+  @if ($use-unicode-range)
+    @at-root 
+      .msie &
+        font-family: get($font-family,sans-serif-ie)
+
+// filter will cause elements with fixed position not working in Firefox
+@supports (-moz-appearance:meterbar)
+  body
+    filter: none
+
+// Render the `main` element consistently in IE.
+main
+  display: block
+
+
+// Links
+// -------------------------------------
+// 1. Remove the gray background on active links in IE 10.
+// 2. Improve readability when focused and also mouse hovered in all browsers.
+a
+  background: transparent // 1
+  text-decoration: none
+  transition: color get($time,normal) ease
+  @each $state,$value in $a
+    @if $value != null
+      &:#{$state}
+        color: $value
+  &:active,
+  &:hover  
+    outline: 0 // 2
+    
+
+// Text-level semantics
+// -------------------------------------
+// Address font sizes and margins set differently in IE 6/7.
+// Address font sizes within `section` and `article` in Firefox 4+, Safari 5 and Chrome.
+h1  
+  font-size: px2rem(28)
+
+h2  
+  font-size: px2rem(24)
+
+h3  
+  font-size: px2rem(20)
+
+h4  
+  font-size: px2rem(16)
+
+h5  
+  font-size: px2rem(15)
+
+h6  
+  font-size: px2rem(14)
+
+h1,h2,h3,h4,h5,h6
+  line-height: get($line-height,s)
+  margin: 40px 0 10px
+  color: #28282e
+  font-weight: 600
+  
+  
+// Address inconsistent and variable font size in all browsers.
+address
+  margin: 0 0 get($spacer,m) 0
+  font-style: normal
+
+// Add the correct font weight in Chrome, Edge, and Safari.
+b,
+strong  
+  font-weight: bolder
+
+// Add the correct font size in all browsers.
+small  
+  font-size: 80%
+
+// Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+sub,
+sup  
+  font-size: 75% 
+  line-height: 0 
+  position: relative 
+  vertical-align: baseline 
+
+sup  
+  top: -0.5em
+
+sub  
+  bottom: -0.25em
+
+p  
+  padding: .75em 0
+  margin: 0
+
+// Grouping content
+// -------------------------------------
+// 1. Add the correct box sizing in Firefox.
+// 2. Show the overflow in Edge and IE.
+hr
+  box-sizing: content-box // 1 
+  height: 0 // 1
+  overflow: visible // 2
+
+
+// Lists
+// -------------------------------------
+ol,
+ul  
+  margin: 0 0 px2rem(24) 0
+  padding-left: px2rem(36)
+
+
+// Embedded content
+// -------------------------------------
+// 1. Remove the border on images inside links in IE 10.
+// 2. Force IE10 and below to size SVG images correctly
+// 3. Set a maximum relative to the parent
+// 4. Scale the height according to the width, otherwise you get stretching
+img  
+  border-style: none  // 1
+  // width: 100%\0  // 2
+  width: 100% // 2
+  // max-width: 100%  // 3
+  height: auto  // 4
+  display: block
+
+// Correct overflow not hidden in IE 9/10/11.
+svg:not(:root)  
+  overflow: hidden 
+
+
+// Figures
+// -------------------------------------
+// Address margin not present in IE 6/7/8/9, Safari 5, and Opera 11.
+figure  
+  margin: 0
+
+
+// Forms
+// -------------------------------------
+// Define consistent border, margin, and padding.
+fieldset  
+  border: 1px solid $gray-300
+  margin: 0 0 get($spacer,m) 0
+  padding: get($spacer,l)
+  
+//  1. Correct the text wrapping in Edge and IE.
+//  2. Correct the color inheritance from `fieldset` elements in IE.
+//  3. Remove the padding so developers are not caught out when they zero out `fieldset` elements in all browsers.
+legend
+  box-sizing: border-box //  1 
+  color: inherit //  2 
+  display: table //  1 
+  max-width: 100% //  1 
+  padding: 0 //  3 
+  white-space: normal //  1 
+
+// 1. Change the font styles in all browsers.
+// 2. Remove the margin in Firefox and Safari.
+// 3. Improve appearance and consistency in all browsers.
+// 4. Compatible with IE11 Partial support unicode-range
+button,
+input,
+optgroup,
+select,
+textarea
+  font-family: inherit // 1
+  font-size: 100% // 1
+  line-height: 1.15 // 1
+  margin: 0 // 2 
+  vertical-align: baseline  // 3
+  @if ($use-unicode-range) // 4
+    @at-root .msie &
+      font-family: get($font-family,sans-serif-ie)
+
+// Show the overflow in IE/Edge.
+button,
+input
+  overflow: visible
+
+// Remove the inheritance of text transform in Edge, Firefox, and IE.
+button,
+select  
+  text-transform: none
+
+// 1. Remove the inner border and padding in Firefox.
+// 2. Restore the focus styles unset by the previous rule.
+button,
+[type="button"],
+[type="reset"],
+[type="submit"]
+  @extend %btn
+  &::-moz-focus-inner
+    border-style: none // 1
+    padding: 0 // 1
+  &:-moz-focusring
+    outline: 1px dotted ButtonText // 2
+
+// 1. Remove default vertical scrollbar in IE10+
+// 2. Improve readability and alignment in all browsers.
+textarea
+  overflow: auto  // 1
+  vertical-align: top  // 2
+  resize: vertical
+
+// 1. Add the correct box sizing in IE 10.
+// 2. Remove the padding in IE 10.
+[type="checkbox"],
+[type="radio"]  
+  box-sizing: border-box  // 1
+  padding: 0  // 2
+
+// Correct the cursor style of increment and decrement buttons in Chrome.
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button
+  height: auto
+
+// 1. Correct the odd appearance in Chrome and Safari.
+// 2. Correct the outline style in Safari.
+[type="search"]  
+  -webkit-appearance: textfield  // 1
+  outline-offset: -2px // 2
+
+// Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration  
+  -webkit-appearance: none 
+
+// 1. Correct the inability to style clickable types in iOS and Safari.
+// 2. Change font properties to `inherit` in Safari.
+::-webkit-file-upload-button
+  -webkit-appearance: button // 1
+  font: inherit // 2
+
+::placeholder
+  color: $hint
+
+_:-ms-input-placeholder, :root select::-ms-expand
+  display: none
+
+// Set the height of file controls to match text inputs
+[type="file"] 
+  display: block
+
+// Make range inputs behave like textual form controls
+[type="range"] 
+  display: block
+
+// Make multiple select elements height not fixed
+select[multiple],
+select[size] 
+  height: auto
+
+label 
+  display: inline-block
+
+// 1. Reset unusual Firefox-on-Android default style see https://github.com/necolas/normalize.css/issues/214
+// 2. Make inputs at least the height of their button counterpart (base line-height + padding + border)
+select,
+textarea,
+[type="text"],
+[type="password"],
+[type="datetime"],
+[type="datetime-local"],
+[type="date"],
+[type="month"],
+[type="time"],
+[type="week"],
+[type="number"],
+[type="email"],
+[type="url"],
+[type="search"],
+[type="tel"],
+[type="color"],
+[type="file"]
+  color: get($form,control,default,color)
+  background-color: get($form,control,default,bgColor)
+  background-image: none // 1
+  border: 1px solid get($form,control,default,brColor)
+  border-radius: 0
+  min-height: get($form,control,minHeight) // 2
+  padding: 10px 15px
+  &:focus
+    border-color: get($form,control,focus,brColor)
+
+// Remove the eye symbol from IE10-11
+[type="password"]
+  &::-ms-reveal,
+  &::-ms-clear
+    display: none
+
+select
+  background: get($form,control,default,bgColor) sprite(arrowDownGray) calc(100% - #{px2rem(12)}) center / px2rem(12) px2rem(12) no-repeat
+  padding: 0 px2rem(36) 0 px2rem(12)
+  appearance: none
+  &:focus
+    background-image: sprite(arrowUpGray)
+  &[disabled]
+    background-image: sprite(arrowDownDisabled)
+
+
+// Special styles for iOS temporal inputs
+// -------------------------------------
+// In Mobile Safari, setting `display: block` on temporal inputs causes the text within the input to become vertically misaligned. As a workaround, we set a pixel line-height that matches the given height of the input. Since this fucks up everything else, we have to appropriately reset it for Internet Explorer and the size variations.
+[type="date"],
+[type="time"],
+[type="datetime-local"],
+[type="month"] 
+  line-height: get($form,control,minHeight)
+  // IE8+ misaligns the text within date inputs, so we reset
+  // line-height: $line-height-m \0
+  +IE11
+    line-height: get($line-height,m)
+
+[type="date"]
+  &::before
+    content: attr(placeholder)
+    color: $hint
+  &:valid::before
+    display: none
+
+
+// Tables
+// -------------------------------------
+table
+  // 1.fix `overflow: hidden` not working on Firefox/Chrome when using `border-radius`
+  width: 100%
+  max-width: 100%
+  margin: 0 auto
+  border-spacing: 0
+  overflow: hidden
+  border-collapse: separate  // 1
+  border: 1px solid #efefef
+  border-left: none
+  + table
+    margin-top: 50px
+  > caption
+    font-size: px2rem(18)
+    font-weight: 600
+    text-align: center
+    margin-bottom: 20px
+    color: #28282e
+  thead
+    th
+      background-color: #556270
+      color: #fff
+      font-weight: 600
+      white-space: nowrap
+      &[colspan]
+        border-bottom: 1px solid #efefef
+  td,
+  th
+    padding: 15px
+    border-left: 1px solid #efefef
+  tbody
+    tr
+      background-color: #fff
+    td
+      border-top: 1px solid #efefef
+      vertical-align: top
+
+
+// Selection Colors
+// -------------------------------------
+::selection
+  background: rgba(0,0,0,.2)
+
+::-moz-selection
+  background: rgba(0,0,0,.2)
+
+::-webkit-search-cancel-button
+  -webkit-appearance: searchfield-cancel-button !important
+
+\:focus
+  outline: 0
+
+iframe
+  border: none
+
+// Misc
+// -------------------------------------
+// Add the correct display in IE 10+.
+[hidden],
+template 
+  display: none
+
+// SVG
+// -------------------------------------  
+text, 
+tspan
+  font-family: Arimo,'Helvetica Neue',Helvetica,Arial,PMingLiU, sans-serif
+  font-weight: 400

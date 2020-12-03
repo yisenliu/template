@@ -1,0 +1,61 @@
+%checkboxradio
+  $iconSize: px2em(18)
+  overflow: hidden
+  label
+    position: relative
+    padding-left: px2em(24)
+    font-weight: normal
+    cursor: pointer
+    min-height: px2em(30)
+    vertical-align: top
+  input
+    display: none
+    + *
+      transition: color get($time,fast)
+      min-height: $iconSize
+      overflow: hidden
+      display: block
+      &::before,
+      &::after
+        +size($iconSize)
+        content: ''
+        font-family: get($font-family,icon)
+        line-height: $iconSize
+        text-align: center
+        display: block
+        position: absolute
+        left: 0
+        top: px2em(4)
+        overflow: hidden
+      &::before
+        transition: background-color get($time,fast), border-color get($time,fast)
+        background-color: get($form,control,default,bgColor)
+        border: 1px solid get($border,color,normal)
+      &::after
+        transform: scale(0)
+        transform-origin: center center
+        transition: color get($time,fast), transform get($time,fast) ease-in-out get($time,fast)/2
+        color: transparent
+    &:checked + *
+      color: $success
+      &::before
+        background-color: get($form,control,checked,bgColor)
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,.05) 100%)
+        border-color: $success
+      &::after
+        transform: scale(.7)
+        color: get($form,control,checked,color)
+    &:disabled + *
+      cursor: not-allowed
+      color: get($form,control,disabled,color)
+      &::before
+        background-color: get($form,control,disabled,bgColor)
+    &:disabled:checked + *
+      color: get($form,control,disabled,color)
+      &::after
+        color: currentColor
+  span
+    a
+      text-decoration: underline
+      @supports(text-decoration-style: wavy)
+        text-decoration: underline wavy $warning

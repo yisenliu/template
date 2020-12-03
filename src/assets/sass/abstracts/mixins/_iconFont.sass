@@ -1,0 +1,24 @@
+// Icon fonts
+// -------------------------------------
+=iconFont($iconName, $arg: null)
+  content: if($arg == null,iconfont-item($iconName),iconfont-item($iconName) $arg)
+  @if ($use-unicode-range)
+    font-family: get($font-family,icon), my-sans-serif
+  @else
+    font-family: get($font-family,icon), get($font-family,sans-serif)
+  font-style: normal
+  font-variant: normal
+  font-weight: normal
+  font-smooth: always
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-decoration: none
+  text-transform: none
+  vertical-align: baseline
+  white-space: pre // pre or pre-wrap when adding line break by writing "\A" escape sequence in one of the strings after the 'content' property
+
+// Usage
+// .foo
+//   &::before or after
+//     +iconFont(smile)
+//     +iconFont(smile,'Hello \A Webpack')

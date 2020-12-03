@@ -1,0 +1,53 @@
+@import variable
+
+.pagination
+  @extend %list-style-none
+  font-size: px2rem(15)
+  clear: both
+  text-align: center
+  li
+    display: inline-block
+    vertical-align: middle
+  a
+    +size(px2rem(32))
+    display: block
+    line-height: px2rem(32)
+    &:hover
+      &::after
+        border-radius: get($border,radius,s)
+        content: ''
+        display: block
+        width: 100%
+        height: 4px
+        background: $gray-300
+    &:active, &.active
+      color: get($pagination,color,active)
+      &::after
+        border-radius: get($border,radius,s)
+        content: ''
+        display: block
+        width: 100%
+        height: 4px
+        background-color: get($pagination,bgColor,active)
+    &.prev, &.next
+      +hide-text
+      border-radius: 50%
+      line-height: px2rem(32)
+      background-color: get($pagination,border-color,hover)
+      &:active
+        background-color: get($pagination,border-color,active)
+        color: #fff
+      &::before
+        font-size: px2rem(15)
+      &::after
+        display: none
+    &.prev
+      &::before
+        +iconFont(arrowLeft)
+    &.next
+      &::before
+        +iconFont(arrowRight)
+    &.disabled
+      pointer-events: none
+      color: get($pagination,color,disabled)
+      background-color: get($pagination,bgColor,disabled)

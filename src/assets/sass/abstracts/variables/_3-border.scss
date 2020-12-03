@@ -1,0 +1,12 @@
+$border: (
+  color: (
+    light: $gray-200,
+    normal: $gray-400,
+    dark: $gray-600
+  ),
+  radius: (
+    s: px2rem(2px),
+    m: px2rem(4px),
+    l: px2rem(8px)
+  )
+);

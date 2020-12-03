@@ -1,0 +1,15 @@
+$pagination: (
+  font-size: px2rem(13),
+  color: (
+    active: get($a, active),
+    disabled: $gray-400
+  ),
+  border-color: (
+    hover: $gray-200,
+    active: get($a, active)
+  ),
+  bgColor: (
+    active: get($a, active),
+    disabled: $gray-50
+  )
+);

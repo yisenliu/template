@@ -1,0 +1,56 @@
+// *************************************
+//
+// Mixins
+// -> Typography
+//
+// *************************************
+
+// Ellipsis
+// -------------------------------------
+
+// Replaced by Compass mixin 'ellipsis'
+// Requires inline-block or block for proper styling
+=text-overflow
+  overflow: hidden
+  white-space: nowrap
+  -ms-text-overflow: ellipsis
+  -o-text-overflow: ellipsis
+  text-overflow: ellipsis
+
+// reference: 
+// http://codepen.io/natonischuk/pen/QbGWBa (original)
+// http://codepen.io/alperenbelgic/pen/NxWjwz (modification)
+=line-clamps($lines: 2, $line-height: 1.2)
+  overflow: hidden
+  position: relative
+  line-height: $line-height
+  max-height: $line-height * $lines * 1em
+  // text-align: justify
+  // word-break: break-all
+  &::before,
+  &::after
+    position: absolute
+    right: 0
+    width: 2em
+    height: $line-height * 1em
+    line-height: $line-height * 1em
+  &::before
+    content: '...'
+    z-index: 2
+    bottom: 0
+    background-image: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 50%)
+    text-align: right
+  &::after
+    content: ''
+    z-index: 1
+    background-color: #fff
+  // 1. only for webkit-browser
+  @supports (-webkit-line-clamp: $lines)
+    &
+      display: -webkit-box // 1
+      -webkit-box-orient: vertical // 1
+      -webkit-line-clamp: $lines // 1
+      text-align: left 
+    &::before,
+    &::after
+      display: none

@@ -1,0 +1,29 @@
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "semi": false,
+  "singleQuote": true,
+  "arrowParens": "avoid",
+  "trailingComma": "none",
+  "overrides": [
+    {
+      "files": ["*.md"],
+      "options": {
+        "proseWrap": "never"
+      }
+    },
+    {
+      "files": "*.json",
+      "options": {
+        "singleQuote": false,
+        "tabWidth": 4
+      }
+    },
+    {
+      "files": ["*.html", "*.shtm", "*.tpl"],
+      "options": {
+        "singleQuote": false
+      }
+    }
+  ]
+}

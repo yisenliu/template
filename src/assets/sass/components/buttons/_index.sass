@@ -1,0 +1,31 @@
+// @import variable
+// @import mixin
+// @import extend
+
+.btn
+  @extend %btn
+
+a.btn--link
+  user-select: none
+  appearance: none
+  cursor: pointer
+  display: inline-flex
+  justify-content: center
+  align-items: center
+  color: #fff
+  padding: 15px
+  text-align: center
+  line-height: normal
+  position: relative
+  text-decoration: none
+  @if (get($button,default,brColor) != null)
+    border: 1px solid get($button,default,brColor)
+  @else
+    border: none
+  &.disabled
+    opacity: .4
+    pointer-events: none
+
+@each $btnType, $btnMap in $button
+  .btn--#{$btnType}
+    +button-variant(get($button,$btnType))

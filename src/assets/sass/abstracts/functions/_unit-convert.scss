@@ -1,0 +1,20 @@
+@function px2em($px, $base: 16px) {
+  @if unitless($px) {
+    $px: $px * 1px;
+  }
+  @return $px / $base * 1em;
+}
+
+@function px2rem($px, $base: 16px) {
+  @if unitless($px) {
+    $px: $px * 1px;
+  }
+  @return $px / $base * 1rem;
+}
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}

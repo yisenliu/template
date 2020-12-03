@@ -1,0 +1,31 @@
+@import variable
+@import mixin
+
+// Contextual colors
+// -------------------------------------
+.helper--success
+  +helper-text-variant(get($helper,success,color))
+
+.helper--info
+  +helper-text-variant(get($helper,info,color))
+
+.helper--warning
+  +helper-text-variant(get($helper,warning,color))
+
+.helper--danger
+  +helper-text-variant(get($helper,danger,color))
+
+
+// Contextual backgrounds
+// -------------------------------------
+.helper--success_alt
+  +helper-text-bg-variant(get($helper,success,color)),get($helper,success,bgColor))
+
+.helper--info_alt
+  +helper-text-bg-variant(get($helper,info,color)),get($helper,info,bgColor))
+
+.helper--warning_alt
+  +helper-text-bg-variant(get($helper,warning,color)),get($helper,warning,bgColor))
+
+.helper--danger_alt
+  +helper-text-bg-variant(get($helper,danger,color)),get($helper,danger,bgColor))

@@ -1,0 +1,15 @@
+%iconFont
+  @if ($use-unicode-range)
+    font-family: get($font-family,icon), my-sans-serif
+  @else
+    font-family: get($font-family,icon), get($font-family,sans-serif)
+  font-style: normal
+  font-variant: normal
+  font-weight: normal
+  font-smooth: always
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-decoration: none
+  text-transform: none
+  vertical-align: baseline
+  line-height: 1

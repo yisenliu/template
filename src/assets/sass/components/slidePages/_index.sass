@@ -1,0 +1,90 @@
+$slidePage-head-height: px2rem(55)
+.slidePage
+  background-color: #fff
+  width: 100%
+  height: 100%
+  transform: translateX(0)
+  transition: transform get($time,fast) ease-in-out
+  position: fixed
+  z-index: get($layer, slidePage)
+  top: 0
+  left: 100%
+  &::after
+    content: ''
+    display: block
+    width: 100%
+    height: 100px
+    background-color: #fff
+    position: absolute
+    z-index: -1
+    left: 0
+    top: 100%
+  &.active
+    transform: translateX(-100%)
+  &--open
+    overflow: hidden
+  &__head
+    background-color: $primary
+    width: 100%
+    height: $slidePage-head-height
+    position: sticky
+    z-index: 10
+    left: 0
+    top: 0
+    display: flex
+    flex-flow: row nowrap
+    align-items: center
+    color: #fff
+    > a
+      color: currentColor
+  &__headLeft,
+  &__headRight
+    flex-grow: 0
+  &__headLeft
+    +hide-text
+    +size(px2rem(60),100%)
+    cursor: pointer
+    +mobile
+      padding-left: gutter()
+    +tablet
+      padding-left: gutter()
+    +desktop
+      padding-left: gutter()
+    &::before
+      +iconFont(arrowLeft)
+      font-size: 1.5rem
+      line-height: $slidePage-head-height
+  &__headMiddle
+    flex-grow: 1
+    margin: 0 auto
+    text-align: center
+    white-space: nowrap
+    line-height: $slidePage-head-height
+    font-size: px2rem(24)
+    +mobile
+      width: span(2)
+    +tablet
+      width: span(4)
+    +desktop
+      width: span(8)
+  &__headRight
+    text-align: right
+    line-height: 1
+    +mobile
+      padding-right: gutter()
+      width: span(1)
+    +tablet
+      padding-right: gutter()
+      width: span(1)
+    +desktop
+      padding-right: gutter()
+      width: span(1)
+  &__body
+    +overflow-scrolling
+    height: calc(100% - #{$slidePage-head-height})
+    +mobile
+      padding: get($spacer,l) gutter()
+    +tablet
+      padding: get($spacer,l) gutter()
+    +desktop
+      padding: get($spacer,l) gutter()

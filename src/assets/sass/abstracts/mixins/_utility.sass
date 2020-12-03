@@ -1,0 +1,61 @@
+// *************************************
+//
+// Mixins
+// -> Utility
+//
+// *************************************
+
+
+// Reset box-sizing
+// -------------------------------------
+=reset-box-sizing
+  &,
+  &:before,
+  &:after
+    box-sizing: content-box
+
+
+// Toggling content
+// -------------------------------------
+// Replaced by Compass/Bourbon mixin 'hide-text'
+// http://nicolasgallagher.com/another-css-image-replacement-technique/
+=hide-text
+  font: 0/0 a
+  // color: transparent
+  // text-shadow: none
+  // background-color: transparent
+  // border: 0
+
+
+//   Equal height
+// -------------------------------------
+=equal-height
+  vertical-align: top
+  display: inline-block
+  display: moz-inline-stack
+  zoom: 1
+  height: auto !important
+  height: 1px
+  min-height: 1px
+
+
+//   Overflow Scrolling
+// -------------------------------------
+// 1. 讓iPad或iIcoMoon-067-phone的捲軸更順暢
+// 2. Auto-hiding scrollbars are used if the element's content overflows. Auto-hiding scrollbars are displayed during scrolling or shortly after the pointer interacts with the page, and are hidden shortly after scrolling and pointer interaction stops. When they are visible, auto-hiding scrollbars overlap the element's content.
+=overflow-scrolling($x:hidden, $y:auto)
+  overflow-x: $x
+  overflow-y: $y
+  -webkit-overflow-scrolling: touch  // 1
+  -ms-overflow-style: -ms-autohiding-scrollbar // 2
+
+
+//   Browser Hack
+// -------------------------------------
+=IE11
+  @at-root _:-ms-fullscreen, :root &
+    @content
+
+=webkit
+  @at-root &:not(*:root)
+    @content

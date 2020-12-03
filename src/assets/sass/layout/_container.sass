@@ -1,0 +1,14 @@
+#container
+  // +overflow-scrolling
+  // will-change: transform // 捲動時不重繪, but conflict with callToAction(fixed)
+  position: relative
+  z-index: 1
+  width: 100%
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  opacity: 0
+  +mobile
+    min-width: 360px
+  +tablet
+    min-width: 768px

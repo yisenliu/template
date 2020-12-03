@@ -1,0 +1,71 @@
+// *************************************
+//
+// Components
+// -> Selects
+//
+// *************************************
+.select
+  font-size: 1rem
+  position: relative
+  z-index: auto
+  text-align: center  
+  line-height: normal
+  cursor: pointer
+  display: inline-block
+  &.active
+    .select__options
+      // visibility: visible
+      opacity: 1
+  &__label
+    display: block
+    width: 100%
+    color: $gray-600
+    overflow: hidden
+    margin: 0
+  &__options
+    border: 1px solid get($border,color,normal)
+    border-top: none
+    display: none
+    opacity: 0
+    transition: opacity get($time,slow)
+    // height: 0
+    // visibility: hidden
+    background-color: #fff
+    position: absolute
+    z-index: get($layer,select)
+    left: 0
+    top: 100%
+    width: 100%
+    overflow: hidden
+  &__radio
+    display: none
+    + span
+      display: block
+      width: 100%
+      cursor: pointer
+      padding: get($spacer,s) get($spacer,m)
+      &:hover
+        background-color: $gray-100
+    &:disabled
+      + span
+        color: get($form,control, disabled,color)
+        text-decoration: line-through
+        pointer-events: none
+    &:checked
+      + span
+        color: $primary
+        font-weight: bold
+        pointer-events: none
+  &__text
+    text-align: center
+    position: relative
+    z-index: 1
+    line-height: normal
+    letter-spacing: 0
+    margin: 0
+    color: $secondary
+    width: 100%
+    height: px2rem(48)
+    border: 1px solid get($border,color,normal)
+    padding: get($spacer,s)
+    background-color: #fff

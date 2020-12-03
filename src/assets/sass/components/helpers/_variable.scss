@@ -1,0 +1,18 @@
+$helper: (
+  success: (
+    color: $success,
+    bgColor: $lightGreen-100
+  ),
+  info: (
+    color: $info,
+    bgColor: $lightBlue-100
+  ),
+  warning: (
+    color: $warning,
+    bgColor: $amber-100
+  ),
+  danger: (
+    color: $danger,
+    bgColor: $red-100
+  )
+);

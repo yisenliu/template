@@ -1,0 +1,51 @@
+// *************************************
+//
+// Components
+// -> Tooltips
+//
+// *************************************
+.tooltip
+  padding: get($spacer,xs)
+  background-color: $info
+  color: #fff
+  will-change: transform
+  position: absolute
+  z-index: get($layer,tooltip)
+  font-size: 80%
+  transition: opacity get($time,normal)
+  opacity: 0
+  &::before
+    content: ''
+    position: absolute
+  &.fadeIn
+    opacity: 1
+  &.fadeOut
+    opacity: 0
+
+.tooltip--bottom
+  &::before
+    +triangle('up',px2rem(12),px2rem(8),$info)
+    transform: translateX(-50%)
+    bottom: 100%
+    left: 50%
+
+.tooltip--left
+  &::before
+    +triangle('right',px2rem(8),px2rem(12),$info)
+    transform: translateY(-50%)
+    left: 100%
+    top: 50%
+
+.tooltip--top
+  &::before
+    +triangle('down',px2rem(12),px2rem(8),$info)
+    transform: translateX(-50%)
+    top: 100%
+    left: 50%
+    
+.tooltip--right
+  &::before
+    +triangle('left',px2rem(8),px2rem(12),$info)
+    transform: translateY(-50%)
+    right: 100%
+    top: 50%

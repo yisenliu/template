@@ -1,0 +1,30 @@
+$form: (
+  control: (
+    default: (
+      color: #556270,
+      bgColor: #fff,
+      brColor: #efefef
+    ),
+    disabled: (
+      color: $gray-400,
+      bgColor: $gray-300,
+      brColor: $gray-400
+    ),
+    checked: (
+      color: #fff,
+      bgColor: $lightGreen-700,
+      brColor: $lightGreen-400
+    ),
+    focus: (
+      bgColor: #fff,
+      brColor: var(--form__control--focus-border, #{$primary})
+    ),
+    readonly: (
+      bgColor: $gray-100
+    ),
+    minHeight: px2rem(45px)
+  ),
+  label: (
+    color: #28282e
+  )
+);

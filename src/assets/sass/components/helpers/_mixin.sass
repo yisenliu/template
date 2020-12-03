@@ -1,0 +1,29 @@
+// *************************************
+//
+// Mixins
+// -> Helper
+//
+// *************************************
+
+// Text emphasis
+// -------------------------------------
+=helper-text-variant($color)
+  color: $color
+  a:link
+    color: darken($color, 15%)
+    text-decoration: underline
+    font-weight: bold
+
+
+// Contextual backgrounds
+// -------------------------------------
+=helper-text-bg-variant($color,$bgColor)
+  border-radius: $border-radius-m
+  background-color: $bgColor
+  color: $color
+  padding: $spacer-m
+  a:link
+    color: $color
+    text-decoration: underline
+    font-weight: bold
+

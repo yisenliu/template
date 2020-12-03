@@ -1,0 +1,34 @@
+.debugMode
+  &::before
+    display: inline-block
+    position: fixed
+    z-index: 2
+    right: 0
+    bottom: 0
+    padding: 4px
+    background-color: rgba(#000,.4)
+    color: #fff
+    +mobile
+      content: 'mobile'
+    +tablet
+      content: 'tablet'
+    +desktop
+      content: 'desktop'
+  #main
+    +mobile
+      background: susy-svg-grid() no-repeat scroll
+    +tablet
+      background: susy-svg-grid() no-repeat scroll
+    +desktop
+      background: susy-svg-grid() no-repeat scroll
+      
+#main
+  position: relative
+  z-index: get($layer,main)
+  clear: both
+  flex-grow: 1
+  max-width: 100%
+  background-color: #fff
+  overflow: hidden
+  +desktop
+    padding-top: get($header-height,desktop)

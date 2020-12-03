@@ -1,0 +1,30 @@
+.header
+  width: 100%
+  font-size: 12px
+  +belowTablet
+    min-height: get($header-height,belowTablet)
+    position: relative
+    z-index: get($layer,header)
+    transition: background-color get($time,normal), margin-top get($time,normal)
+    &::before
+      +size(100%,get($header-height,belowTablet))
+      content: ''
+      display: block
+      background-color: #fff
+      position: absolute
+      z-index: 2
+      left: 0
+      top: 0
+  +desktop
+    background-color: #fff
+    padding: 0 30px
+    height: get($header-height,desktop)
+    display: flex
+    flex-flow: row nowrap
+    justify-content: flex-start
+    will-change: transform
+    transition: all get($time,normal) ease-in-out
+    position: fixed
+    z-index: get($layer,headroom)
+    top: 0
+    left: 0

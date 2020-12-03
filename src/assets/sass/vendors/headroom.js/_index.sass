@@ -1,0 +1,11 @@
+.headroom
+  will-change: transform
+  transition: transform get($time,normal) ease-in-out
+  // position: fixed
+  // z-index: get($layer,headroom)
+  top: 0
+  left: 0
+  &--pinned
+    transform: translateY(0%)
+  &--unpinned
+    transform: translateY(-100%)  

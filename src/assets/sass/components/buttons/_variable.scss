@@ -1,0 +1,37 @@
+$button: (
+  default: (
+    color: #fff,
+    bgColor: #141618,
+    brColor: null
+  ),
+  primary: (
+    color: #fff,
+    bgColor: $primary,
+    brColor: null
+  ),
+  secondary: (
+    color: #fff,
+    bgColor: $secondary,
+    brColor: null
+  ),
+  success: (
+    color: #fff,
+    bgColor: $success,
+    brColor: null
+  ),
+  info: (
+    color: #fff,
+    bgColor: $info,
+    brColor: null
+  ),
+  warning: (
+    color: #fff,
+    bgColor: $warning,
+    brColor: null
+  ),
+  danger: (
+    color: #fff,
+    bgColor: $danger,
+    brColor: null
+  )
+);

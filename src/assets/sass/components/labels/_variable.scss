@@ -1,0 +1,22 @@
+$label: (
+  success: (
+    color: #fff,
+    bgColor: $success
+  ),
+  info: (
+    color: #fff,
+    bgColor: $info
+  ),
+  warning: (
+    color: #fff,
+    bgColor: $warning
+  ),
+  danger: (
+    color: #fff,
+    bgColor: $danger
+  ),
+  disabled: (
+    color: $gray-100,
+    bgColor: $gray-400
+  )
+);

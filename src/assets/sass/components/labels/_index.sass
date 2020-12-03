@@ -1,0 +1,25 @@
+@import variable
+@import mixin
+@import extend
+
+// Scaffolding
+// -------------------------------------
+.label
+  @extend %label
+
+//   Modifiers
+// -------------------------------------
+.label--info
+  +label-varient(get($label,info))
+
+.label--success
+  +label-varient(get($label,success))
+
+.label--warning
+  +label-varient(get($label,warning))
+
+.label--danger
+  +label-varient(get($label,danger))
+
+.label--disabled
+  +label-varient(get($label,disabled))

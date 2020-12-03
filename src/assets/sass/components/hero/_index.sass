@@ -1,0 +1,31 @@
+.hero
+  width: 100%
+  position: relative
+  height: 400px
+  +desktop
+    height: 30vw
+  &__img
+    +size(100%)
+    // width: 100%
+    object-fit: cover
+    object-position: center center
+    // +belowTablet
+    //   height: 400px
+    // +desktop
+    //   height: 30vw
+  &__title
+    font-weight: 600
+    line-height: 1.5
+    letter-spacing: -.03em
+    color: #fff
+    display: inline-block
+    margin: 0
+    position: absolute
+    z-index: 2
+    right: 30px
+    bottom: 20px
+    +belowTablet
+      font-size: px2rem(24)
+      bottom: 50px
+    +desktop
+      font-size: px2rem(32)

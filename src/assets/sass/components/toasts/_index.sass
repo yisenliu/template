@@ -1,0 +1,51 @@
+@import abstracts
+.toast
+  +size(100%)
+  position: fixed
+  z-index: get($layer,toast)
+  left: 0
+  top: 0
+  display: flex
+  align-items: center
+  justify-content: center
+  opacity: 0
+  background-color: rgba(#000,.5)
+  &.error
+    .toast__body
+      &::before
+        +iconFont(basic1-173_close_remove_exit)
+        color: $danger
+  &.info
+    .toast__body
+      &::before
+        +iconFont(basic2-087_info)
+        color: $info
+  &.success
+    .toast__body
+      &::before
+        +iconFont(basic1-174_ok_success_check)
+        color: $success
+  &.warning
+    .toast__body
+      &::before
+        +iconFont(basic1-121_alert_attention)
+        color: $warning
+  &__body
+    text-align: center
+    background-color: #fff
+    box-shadow: get($box-shadow,default)
+    padding: 50px 30px
+    &::before
+      display: block
+      width: 100%
+      text-align: center
+      margin-bottom: 15px
+      font-size: px2rem(48)
+    +mobile
+      width: span(3)
+    +tablet
+      min-width: span(4)
+      max-width: span(5)
+    +desktop
+      min-width: span(4)
+      max-width: span(5)

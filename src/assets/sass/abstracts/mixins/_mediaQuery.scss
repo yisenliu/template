@@ -1,0 +1,73 @@
+// *************************************
+//
+// Mixins
+// -> Media Query For Susy 3
+//
+// *************************************
+@mixin susy-use($config) {
+  //  parse and normalize any shorthand arguments
+  $config: susy-compile($config);
+
+  // record the global settings -
+  // and update the global variable with our new settings
+  $global: $susy;
+  $susy: map-merge($susy, $config) !global;
+
+  // any content inside this mixin
+  // will use the local settings
+  @content;
+
+  // return the global variable to its initial value
+  $susy: $global !global;
+}
+
+@mixin susy-at($config, $orientation: null) {
+  $config: susy-compile($config);
+  $query: map-get($config, 'query');
+
+  @if $orientation != null {
+    $query: '#{$query} and (orientation: #{$orientation})';
+  }
+
+  @media #{$query} {
+    @include susy-use($config) {
+      @content;
+    }
+  }
+}
+
+@mixin mobile($orientation: null) {
+  @include susy-at($mobile, $orientation) {
+    @content;
+  }
+}
+
+@mixin tablet($orientation: null) {
+  @include susy-at($tablet, $orientation) {
+    @content;
+  }
+}
+
+@mixin desktop($orientation: null) {
+  @include susy-at($desktop, $orientation) {
+    @content;
+  }
+}
+
+@mixin belowTablet($orientation: null) {
+  @include susy-at($belowTablet, $orientation) {
+    @content;
+  }
+}
+
+@mixin aboveTablet($orientation: null) {
+  @include susy-at($aboveTablet, $orientation) {
+    @content;
+  }
+}
+
+@mixin print {
+  @include susy-at($print) {
+    @content;
+  }
+}
